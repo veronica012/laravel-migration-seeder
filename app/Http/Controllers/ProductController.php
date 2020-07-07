@@ -9,6 +9,7 @@ class ProductController extends Controller
     public function index()
     {
         $all_products = Product::all();
-        dd($all_products);
+        // dd($all_products);
+        return view('prodotti', ['all_products' => $all_products]);
     }
 }
