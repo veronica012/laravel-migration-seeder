@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Product;
+use Faker\Generator as Faker;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -10,7 +11,7 @@ class ProductsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() //dependency injection Faker $faker
+    public function run(Faker $faker) //dependency injection Faker $faker
     {
         $data_products = config('products');
         //spostato in products.php in config
@@ -28,21 +29,21 @@ class ProductsTableSeeder extends Seeder
         //         'price' => 1.50
         //     ]
         // ];
-        foreach ($data_products as $data_product) {
-            $newProduct = new Product();
-            $newProduct->name = $data_product['name'];
-            $newProduct->brand = $data_product['brand'];
-            $newProduct->description =  $data_product['description'];
-            $newProduct->price = $data_product['price'];
-            $newProduct->save();
-        }
-        // for ($i=0; $i < 10 ; $i++) {
-        //      $newProduct = new Product();
-        //      $newProduct->name = $faker->word;
-        //      $newProduct->brand = $faker->word;
-        //      $newProduct->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
-        //      $newProduct->price = $faker->randomDigit ;
-        //      $newProduct->save();
+        // foreach ($data_products as $data_product) {
+        //     $newProduct = new Product();
+        //     $newProduct->name = $data_product['name'];
+        //     $newProduct->brand = $data_product['brand'];
+        //     $newProduct->description =  $data_product['description'];
+        //     $newProduct->price = $data_product['price'];
+        //     $newProduct->save();
         // }
+        for ($i=0; $i < 10 ; $i++) {
+             $newProduct = new Product();
+             $newProduct->name = $faker->word;
+             $newProduct->brand = $faker->word;
+             $newProduct->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
+             $newProduct->price = $faker->randomDigit ;
+             $newProduct->save();
+        }
     }
 }
